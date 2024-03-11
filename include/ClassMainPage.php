@@ -7,7 +7,7 @@ Class MainPage
     private object $MinDate;
     private const CURRENCY_ARRAY = ARRAY('EUR', 'USD', 'CHF');
     private string $Currency;
-    private const NBP_API = 'http://api.nbp.pl/api/exchangerates/rates/c/'; // {code}/{startDate}/{endDate}/
+    private const NBP_API = 'http://api.nbp.pl/api/exchangerates/rates/c/'; // {code}/{startDate}/{endDate}/ //tutaj mozesz uzyc sprintf i przekazywać do niego argumenty w koncowym wywołaniu
     private string $ConnectNBP;
     private string $NBPData;
     private object $XMLObject;
@@ -53,7 +53,7 @@ Class MainPage
 	    $this->setDates();
         $this->setCurrency();
 
-        $this->Form =     '<form method="post">';
+        $this->Form =     '<form method="post">'; //to jest nadal źle. Ogólnie w "nowym" php nie piszemy html w czystym php. Powinno być html => php. Czyli te tresci jak form, powinny być budowane na zwyklym html, a wpinane w nie powinny być kwestie php
         $this->Form .=    '<input type="date" name="formDate" value="'.$this->getDateFormat('RequestDate','Y-m-d').'" min="'.$this->getDateFormat('MinDate','Y-m-d').'" max="'.date('Y-m-d').'"></input>';      //Czy w takim miejscu użycie date() jest ok?
         $this->Form .=    '<select name="formCurrency">"';
         foreach($this::CURRENCY_ARRAY as $Currency){
@@ -74,7 +74,7 @@ Class MainPage
     {
         return isset($_POST[$Form_Name]) ? true : false;
     }
-    private function setConnectNBP() : string{
+    private function setConnectNBP() : string{ //https://www.php.net/manual/en/function.http-build-query.php
         $this->ConnectNBP = $this::NBP_API;
         $this->ConnectNBP .= $this->getCurrency().'/';
         $this->ConnectNBP .= $this->getDateFormat('PreviousDate','Y-m-d').'/';

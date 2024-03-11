@@ -11,5 +11,6 @@
 	include_once 'include/ClassMainPage.php';
 	$Page = new MainPage();
 ?>
+Skoro jest to php jak wyzej to nie musisz ich zamykać. Dodatkowo wedle drzewa DOM, to powinno się znaleźć w tagu <body>
 <?=$Page->formDateCurrency()?>
 <?=$Page->isDateCurrencySet() ? $Page->showData() : $Page->showMessage()?>

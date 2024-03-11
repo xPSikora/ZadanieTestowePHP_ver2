@@ -1,11 +1,12 @@
 <?php
 Class CurrencyObject
 {
+    //nazewnictwo powinnobyć camelCase. Tak na prawde wszystkiego, są małe wyjątki, ale to w konfigach, czy plikach xml itp, czy w response json, ale w kodzie praktycznie wszedzie camelCase
     private object $XMLObject;
     private string $RequestDate;
     private object $XMLRatesObject;
     private object $ActualRate;
-    private object $PreviousRate;    
+    private object $PreviousRate;    //nie używasz enterów, przez co ten kod jest bardzo nieczytelny
     public function __construct(object $XMLObject, string $RequestDate)
     {
         $this->XMLObject = $XMLObject;
